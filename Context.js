@@ -43,4 +43,8 @@ module.exports = class Context {
         this.database.sync({ force: false });
     }
 
+	async getUser(id) {
+		return await this.database.models.user.findOne({ where: { id } });
+	}
+
 };
