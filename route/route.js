@@ -1,9 +1,9 @@
 const router = require("express").Router({ mergeParams: true });
 
-// router.use('/charity', require('./charity'));
-// router.use('/donation', require('./donation'));
-// router.use('/user', require('./user'));
-// router.use('/country', require('./country'));
-// router.use('/group', require('./group'));
+router.use("/festival", require("./festival"));
+router.use("/gallery", require("./gallery"));
+router.use("/news", require("./news"));
+router.use("/workshop", require("./workshop"));
+router.use("/message", require("./message"));
 
 module.exports = router;
