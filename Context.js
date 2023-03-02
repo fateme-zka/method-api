@@ -21,11 +21,24 @@ module.exports = class Context {
     }
     init() {
         // Tables
-        // const Charity = require('./model/Charity');
+        const Admin = require('./model/Admin');
+        const User = require('./model/User');
+        const Festival = require('./model/Festival');
+        const Gallery = require('./model/Gallery');
+        const News = require('./model/News');
+        const NewsCategory = require('./model/NewsCategory');
+        const Workshop = require('./model/Workshop');
 
-        // const charity = Charity(this.database, Sequelize.DataTypes);
+        const admin = Admin(this.database, Sequelize.DataTypes);
+        const user = User(this.database, Sequelize.DataTypes);
+        const festival = Festival(this.database, Sequelize.DataTypes);
+        const gallery = Gallery(this.database, Sequelize.DataTypes);
+        const news = News(this.database, Sequelize.DataTypes);
+        const news_category = NewsCategory(this.database, Sequelize.DataTypes);
+        const workshop = Workshop(this.database, Sequelize.DataTypes);
 
-        // charity.belongsTo(country, { foreignKey: { name: 'country_id', allowNull: false } });
+        user.belongsTo(admin, { foreignKey: { name: 'admin_id', allowNull: false } });
+        news.belongsTo(news_category, { foreignKey: { name: 'category_id', allowNull: false } });
         
         this.database.sync({ force: false });
     }
