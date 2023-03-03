@@ -10,18 +10,22 @@ module.exports = class Context {
 		// Tables
 		const Admin = require("./model/Admin");
 		const User = require("./model/User");
+		const Course = require("./model/Course");
 		const Festival = require("./model/Festival");
 		const Gallery = require("./model/Gallery");
 		const News = require("./model/News");
 		const NewsCategory = require("./model/NewsCategory");
+		const Teacher = require("./model/Teacher");
 		const Workshop = require("./model/Workshop");
 
 		const admin = Admin(this.database, Sequelize.DataTypes);
 		const user = User(this.database, Sequelize.DataTypes);
+		const course = Course(this.database, Sequelize.DataTypes);
 		const festival = Festival(this.database, Sequelize.DataTypes);
 		const gallery = Gallery(this.database, Sequelize.DataTypes);
 		const news = News(this.database, Sequelize.DataTypes);
 		const news_category = NewsCategory(this.database, Sequelize.DataTypes);
+		const teacher = Teacher(this.database, Sequelize.DataTypes);
 		const workshop = Workshop(this.database, Sequelize.DataTypes);
 
 		user.belongsTo(admin, {
