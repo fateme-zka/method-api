@@ -14,3 +14,4 @@ module.exports = (sequelize, DataTypes, name, model, config) => {
     config.updatedAt = true;
     return sequelize.define(name, model, config);
 };
+	

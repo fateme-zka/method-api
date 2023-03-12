@@ -9,6 +9,7 @@ module.exports = class Context {
 	init() {
 		// Tables
 		const Admin = require("./model/Admin");
+		const Artist = require("./model/Artist");
 		const User = require("./model/User");
 		const Course = require("./model/Course");
 		const Festival = require("./model/Festival");
@@ -19,6 +20,7 @@ module.exports = class Context {
 		const Workshop = require("./model/Workshop");
 
 		const admin = Admin(this.database, Sequelize.DataTypes);
+		const artist = Artist(this.database, Sequelize.DataTypes);
 		const user = User(this.database, Sequelize.DataTypes);
 		const course = Course(this.database, Sequelize.DataTypes);
 		const festival = Festival(this.database, Sequelize.DataTypes);
@@ -28,8 +30,11 @@ module.exports = class Context {
 		const teacher = Teacher(this.database, Sequelize.DataTypes);
 		const workshop = Workshop(this.database, Sequelize.DataTypes);
 
+		artist.belongsTo(course, {
+			foreignKey: { name: "course_id", allowNull: false },
+		});
 		user.belongsTo(admin, {
-			foreignKey: { name: "admin_id", allowNull: false },
+			foreignKey: { name: "admin_id", allowNull: true },
 		});
 		news.belongsTo(news_category, {
 			foreignKey: { name: "category_id", allowNull: false },
@@ -83,7 +88,19 @@ module.exports = class Context {
 		return await this.database.models.gallery.findAll();
 	}
 
+	async getCourses() {
+		return await this.database.models.course.findAll();
+	}
+
+	async getTeachers() {
+		return await this.database.models.teacher.findAll();
+	}
+
 	async addMessage(name, email, title, description) {
 		// todo add message
+	}
+
+	async addArtist() {
+		// todo add artist
 	}
 };
