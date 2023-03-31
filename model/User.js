@@ -3,7 +3,6 @@ const Base = require("./Base");
 module.exports = (sequelize, DataTypes) => {
 	return Base(sequelize, DataTypes, "user", {
 		id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-		admin_id: { type: DataTypes.INTEGER, allowNull: true }, // todo check
 		admin: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue:false },
 		name: { type: DataTypes.STRING, allowNull: false },
 		family: { type: DataTypes.STRING, allowNull: false },

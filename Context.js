@@ -8,36 +8,27 @@ module.exports = class Context {
 
 	init() {
 		// Tables
-		const Admin = require("./model/Admin");
-		const Artist = require("./model/Artist");
 		const User = require("./model/User");
 		const Course = require("./model/Course");
 		const Festival = require("./model/Festival");
 		const Gallery = require("./model/Gallery");
-		const News = require("./model/News");
-		const NewsCategory = require("./model/NewsCategory");
-		const Teacher = require("./model/Teacher");
+		const GalleryCategory = require("./model/GalleryCategory");
+		const Student = require("./model/Student");
+		const Theater = require("./model/Theater");
 		const Workshop = require("./model/Workshop");
 
-		const admin = Admin(this.database, Sequelize.DataTypes);
-		const artist = Artist(this.database, Sequelize.DataTypes);
 		const user = User(this.database, Sequelize.DataTypes);
 		const course = Course(this.database, Sequelize.DataTypes);
 		const festival = Festival(this.database, Sequelize.DataTypes);
 		const gallery = Gallery(this.database, Sequelize.DataTypes);
-		const news = News(this.database, Sequelize.DataTypes);
-		const news_category = NewsCategory(this.database, Sequelize.DataTypes);
-		const teacher = Teacher(this.database, Sequelize.DataTypes);
+		const gallery_category = GalleryCategory(this.database, Sequelize.DataTypes);
+		const student = Student(this.database, Sequelize.DataTypes);
+		const theater = Theater(this.database, Sequelize.DataTypes);
 		const workshop = Workshop(this.database, Sequelize.DataTypes);
 
-		artist.belongsTo(course, {
-			foreignKey: { name: "course_id", allowNull: false },
-		});
-		user.belongsTo(admin, {
-			foreignKey: { name: "admin_id", allowNull: true },
-		});
-		news.belongsTo(news_category, {
-			foreignKey: { name: "category_id", allowNull: false },
+		//set foreignKey
+		gallery.belongsTo(gallery_category, {
+			foreignKey: { name: "gallery_categroy_id", allowNull: false },
 		});
 
 		this.database.sync({ force: false });
@@ -72,35 +63,20 @@ module.exports = class Context {
 		return await this.getModel("user", { where: { id } });
 	}
 
-	async getNews() {
-		return await this.database.models.news.findAll();
-	}
-
 	async getFestivals() {
-		return await this.database.models.festival.findAll();
+		return await this.database.models.festival.findAll({});
 	}
 
 	async getWorkshops() {
-		return await this.database.models.workshop.findAll();
+		return await this.database.models.workshop.findAll({});
 	}
 
 	async getGalleries() {
-		return await this.database.models.gallery.findAll();
+		return await this.database.models.gallery.findAll({});
 	}
 
 	async getCourses() {
-		return await this.database.models.course.findAll();
+		return await this.database.models.course.findAll({});
 	}
 
-	async getTeachers() {
-		return await this.database.models.teacher.findAll();
-	}
-
-	async addMessage(name, email, title, description) {
-		// todo add message
-	}
-
-	async addArtist() {
-		// todo add artist
-	}
 };
