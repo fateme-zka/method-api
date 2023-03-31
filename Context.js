@@ -63,6 +63,10 @@ module.exports = class Context {
 		return await this.getModel("user", { where: { id } });
 	}
 
+	async getTheaters() {
+		return await this.database.models.theater.findAll({});
+	}
+
 	async getFestivals() {
 		return await this.database.models.festival.findAll({});
 	}
