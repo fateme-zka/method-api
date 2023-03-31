@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
 			),
 			allowNull: false
 		},
-		art_records: { type: Sequelize.ARRAY(Sequelize.JSON), allowNull: true }, // todo check
-		other_art_records: { type: Sequelize.ARRAY(Sequelize.JSON), allowNull: true }, // todo check
+		art_records: { type: Sequelize.JSON, allowNull: true }, // todo check
+		other_art_records: { type: Sequelize.JSON, allowNull: true }, // todo check
 	})
 }

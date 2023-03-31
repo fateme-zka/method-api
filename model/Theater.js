@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 		director_assistant: { type: DataTypes.STRING, allowNull: true },
 		writer: { type: DataTypes.STRING, allowNull: true },
 		producer: { type: DataTypes.STRING, allowNull: true },
-		actors: { type: Sequelize.ARRAY(Sequelize.STRING), allowNull: true }, // todo check
+		actors: { type: Sequelize.JSON, allowNull: true }, // todo check
 		script_supervisor: { type: DataTypes.STRING, allowNull: true },
 		planning_manager: { type: DataTypes.STRING, allowNull: true },
 		production_manager: { type: DataTypes.STRING, allowNull: true },
